@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "917396995476",
+    "project_id": "work-effort-manager",
+    "storage_bucket": "work-effort-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917396995476:android:8c6db60e565d974a4a6381",
+        "android_client_info": {
+          "package_name": "ch.panphi.work_effort_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917396995476-55157citnk4097pnc8at0lbvsg7vprp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALWP-QrbCG7_vSv-vX_z7jfozAk2R6Ni8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917396995476-55157citnk4097pnc8at0lbvsg7vprp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
