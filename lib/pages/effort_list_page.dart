@@ -54,9 +54,10 @@ class _EffortListState extends State<EffortListPage> {
       case ConnectionState.none:
       case ConnectionState.waiting:
       case ConnectionState.active:
-        //TODO add waiting thingy
         return Scaffold(
-          body: Text('waiting'),
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
         );
     }
   }
