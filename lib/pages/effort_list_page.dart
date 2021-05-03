@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:work_effort_manager/model/db_interactor.dart';
 import 'package:work_effort_manager/objects/effort.dart';
+import 'package:work_effort_manager/pages/effort_detail_page.dart';
 
 //TODO update when new ones added needed active?
 class EffortListPage extends StatefulWidget {
@@ -18,11 +19,14 @@ class _EffortListState extends State<EffortListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Work Effort Manager')),
+      ),
       body: FutureBuilder(
         builder: (context, snapshot) => _buildList(context, snapshot),
         future: dbInteractor.getEfforts(),
       ),
-      backgroundColor: Colors.red,
+      //backgroundColor: Colors.white,
     );
   }
 
@@ -67,11 +71,22 @@ class _EffortListState extends State<EffortListPage> {
     //TODO could this ever be actually null and needs some special handling?
     var effort = Effort.fromJson(efforts![index].data()!);
     return ListTile(
-      //TODO: Navigate to Effort detail Page
-      onTap: () => print('pressed $index'),
-      leading: Text(effort.status.name),
+      onTap: () => Navigator.push(context,
+          MaterialPageRoute(builder: (context) => EffortDetailPage(effort))),
+      leading: CircleAvatar(
+        backgroundColor: effort.status.color,
+        radius: 25,
+        child: Text('V'),
+      ),
+      isThreeLine: true,
       title: Text(effort.jobTitle),
-      trailing: Text(effort.company),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(effort.company),
+          Text(effort.status.name),
+        ],
+      ),
     );
   }
 }
