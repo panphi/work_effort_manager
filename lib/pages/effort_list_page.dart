@@ -22,9 +22,9 @@ class _EffortListState extends State<EffortListPage> {
       appBar: AppBar(
         title: Center(child: Text('Work Effort Manager')),
       ),
-      body: FutureBuilder(
+      body: StreamBuilder<QuerySnapshot>(
         builder: (context, snapshot) => _buildList(context, snapshot),
-        future: dbInteractor.getEfforts(),
+        stream: dbInteractor.getEffortsStream(),
       ),
       //backgroundColor: Colors.white,
     );
@@ -35,9 +35,24 @@ class _EffortListState extends State<EffortListPage> {
       //TODO Error message or something
       return SafeArea(child: Text('It didnt work :('));
     }
+    if (!snapshot.hasData) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     switch (snapshot.connectionState) {
+      case ConnectionState.none:
+      case ConnectionState.waiting:
+        return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       case ConnectionState.done:
-        var queryResult = snapshot.data as QuerySnapshot;
+      case ConnectionState.active:
+        var queryResult = snapshot.data;
         efforts = queryResult.docs;
 
         return Scaffold(
@@ -50,17 +65,9 @@ class _EffortListState extends State<EffortListPage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               //TODO navigate to add Effort Page
-              print('pressed Button');
+              dbInteractor.addEffort();
             },
             child: Icon(Icons.add),
-          ),
-        );
-      case ConnectionState.none:
-      case ConnectionState.waiting:
-      case ConnectionState.active:
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
           ),
         );
     }
@@ -69,13 +76,14 @@ class _EffortListState extends State<EffortListPage> {
   //TODO beautify
   Widget _buildEffortItem(BuildContext context, int index) {
     //TODO could this ever be actually null and needs some special handling?
-    var effort = Effort.fromJson(efforts![index].data()!);
+    Effort effort = Effort.fromJson(efforts![index].data()!);
     return ListTile(
       onTap: () => Navigator.push(context,
           MaterialPageRoute(builder: (context) => EffortDetailPage(effort))),
       leading: CircleAvatar(
         backgroundColor: effort.status.color,
         radius: 25,
+        //TODO show proper Icon
         child: Text('V'),
       ),
       isThreeLine: true,

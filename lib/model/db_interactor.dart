@@ -6,4 +6,9 @@ class DBInteractor {
   Future<QuerySnapshot> getEfforts() {
     return _firestore.collection('effort').get();
   }
+
+  Stream<QuerySnapshot> getEffortsStream() {
+    return _firestore.collection('effort').snapshots();
+  }
+
 }
