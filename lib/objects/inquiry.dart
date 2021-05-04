@@ -10,7 +10,7 @@ class Inquiry extends Interaction {
   String what;
 
   Inquiry({required this.toWhom, required this.what, required DateTime date})
-      : super(date);
+      : super(date, 'Inquiry');
 
   factory Inquiry.fromJson(Map<String, dynamic> json) =>
       _$InquiryFromJson(json);

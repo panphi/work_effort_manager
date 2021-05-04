@@ -15,7 +15,7 @@ class Application extends Interaction {
       required this.type,
       required DateTime date,
       this.adLink})
-      : super(date);
+      : super(date, 'Application');
 
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);

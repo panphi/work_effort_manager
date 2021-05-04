@@ -1,16 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'interaction.g.dart';
-
-@JsonSerializable()
-class Interaction {
+abstract class Interaction {
   DateTime date;
+  String interactionName;
   //TODO: Attachement?
 
-  Interaction(this.date);
+  Interaction(this.date, this.interactionName);
 
-  factory Interaction.fromJson(Map<String, dynamic> json) =>
-      _$InteractionFromJson(json);
-
-  Map<String, dynamic> toJson() => _$InteractionToJson(this);
+  Map<String, dynamic> toJson();
 }

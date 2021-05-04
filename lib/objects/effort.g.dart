@@ -11,26 +11,18 @@ Effort _$EffortFromJson(Map<String, dynamic> json) {
     jobTitle: json['jobTitle'] as String,
     company: json['company'] as String,
     status: Status.fromJson(json['status'] as Map<String, dynamic>),
-    interactions: (json['interactions'] as List<dynamic>?)
-        ?.map((e) => Interaction.fromJson(e as Map<String, dynamic>))
+    interactions: (json['interactions'] as List<dynamic>)
+        .map((e) =>
+            const InteractionConverter().fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$EffortToJson(Effort instance) {
-  final val = <String, dynamic>{
-    'jobTitle': instance.jobTitle,
-    'company': instance.company,
-    'status': instance.status.toJson(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'interactions', instance.interactions?.map((e) => e.toJson()).toList());
-  return val;
-}
+Map<String, dynamic> _$EffortToJson(Effort instance) => <String, dynamic>{
+      'jobTitle': instance.jobTitle,
+      'company': instance.company,
+      'status': instance.status.toJson(),
+      'interactions': instance.interactions
+          .map(const InteractionConverter().toJson)
+          .toList(),
+    };

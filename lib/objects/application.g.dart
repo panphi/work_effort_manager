@@ -12,12 +12,13 @@ Application _$ApplicationFromJson(Map<String, dynamic> json) {
     type: ApplicationType.fromJson(json['type'] as Map<String, dynamic>),
     date: DateTime.parse(json['date'] as String),
     adLink: json['adLink'] as String?,
-  );
+  )..interactionName = json['interactionName'] as String;
 }
 
 Map<String, dynamic> _$ApplicationToJson(Application instance) {
   final val = <String, dynamic>{
     'date': instance.date.toIso8601String(),
+    'interactionName': instance.interactionName,
     'medium': instance.medium,
   };
 

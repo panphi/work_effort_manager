@@ -11,7 +11,7 @@ class Interview extends Interaction {
 
   // The from is the DateTime date from Interaction
   Interview({required this.to, required this.where, required DateTime date})
-      : super(date);
+      : super(date, 'Interview');
 
   factory Interview.fromJson(Map<String, dynamic> json) =>
       _$InterviewFromJson(json);

@@ -11,7 +11,7 @@ class Feedback extends Interaction {
 
   // The from is the DateTime from Interaction
   Feedback({required this.from, required this.feedback, required DateTime date})
-      : super(date);
+      : super(date, 'Feedback');
 
   factory Feedback.fromJson(Map<String, dynamic> json) =>
       _$FeedbackFromJson(json);

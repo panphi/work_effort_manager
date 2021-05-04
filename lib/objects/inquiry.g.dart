@@ -11,11 +11,12 @@ Inquiry _$InquiryFromJson(Map<String, dynamic> json) {
     toWhom: json['toWhom'] as String,
     what: json['what'] as String,
     date: DateTime.parse(json['date'] as String),
-  );
+  )..interactionName = json['interactionName'] as String;
 }
 
 Map<String, dynamic> _$InquiryToJson(Inquiry instance) => <String, dynamic>{
       'date': instance.date.toIso8601String(),
+      'interactionName': instance.interactionName,
       'toWhom': instance.toWhom,
       'what': instance.what,
     };
