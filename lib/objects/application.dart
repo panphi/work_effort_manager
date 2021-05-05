@@ -1,18 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:work_effort_manager/objects/application_type.dart';
 import 'package:work_effort_manager/objects/interaction.dart';
 
 part 'application.g.dart';
 
 @JsonSerializable()
 class Application extends Interaction {
+  String jobTitle;
+  String company;
   String medium;
   String? adLink;
-  ApplicationType type;
 
   Application(
       {required this.medium,
-      required this.type,
+      required this.company,
+      required this.jobTitle,
       required DateTime date,
       this.adLink})
       : super(date, 'Application');

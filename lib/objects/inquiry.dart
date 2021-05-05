@@ -8,9 +8,14 @@ part 'inquiry.g.dart';
 class Inquiry extends Interaction {
   String toWhom;
   String what;
+  String? answer;
 
-  Inquiry({required this.toWhom, required this.what, required DateTime date})
-      : super(date, 'Inquiry');
+  Inquiry({
+    required this.toWhom,
+    required this.what,
+    required DateTime date,
+    this.answer,
+  }) : super(date, 'Inquiry');
 
   factory Inquiry.fromJson(Map<String, dynamic> json) =>
       _$InquiryFromJson(json);

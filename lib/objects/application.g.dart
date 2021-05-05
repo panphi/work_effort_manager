@@ -9,7 +9,8 @@ part of 'application.dart';
 Application _$ApplicationFromJson(Map<String, dynamic> json) {
   return Application(
     medium: json['medium'] as String,
-    type: ApplicationType.fromJson(json['type'] as Map<String, dynamic>),
+    company: json['company'] as String,
+    jobTitle: json['jobTitle'] as String,
     date: DateTime.parse(json['date'] as String),
     adLink: json['adLink'] as String?,
   )..interactionName = json['interactionName'] as String;
@@ -19,6 +20,8 @@ Map<String, dynamic> _$ApplicationToJson(Application instance) {
   final val = <String, dynamic>{
     'date': instance.date.toIso8601String(),
     'interactionName': instance.interactionName,
+    'jobTitle': instance.jobTitle,
+    'company': instance.company,
     'medium': instance.medium,
   };
 
@@ -29,6 +32,5 @@ Map<String, dynamic> _$ApplicationToJson(Application instance) {
   }
 
   writeNotNull('adLink', instance.adLink);
-  val['type'] = instance.type.toJson();
   return val;
 }

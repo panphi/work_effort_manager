@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:work_effort_manager/objects/color_converter.dart';
+import 'package:work_effort_manager/objects/converters/color_converter.dart';
 
 part 'status.g.dart';
 

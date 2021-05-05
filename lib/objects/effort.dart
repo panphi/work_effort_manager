@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:work_effort_manager/objects/status.dart';
 
+import 'converters/interaction_converter.dart';
 import 'interaction.dart';
-import 'interaction_converter.dart';
 
 part 'effort.g.dart';
 
