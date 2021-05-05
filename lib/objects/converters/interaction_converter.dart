@@ -4,7 +4,7 @@ import 'package:work_effort_manager/objects/feedback.dart';
 import 'package:work_effort_manager/objects/inquiry.dart';
 import 'package:work_effort_manager/objects/interaction.dart';
 
-import 'interview.dart';
+import '../interview.dart';
 
 class InteractionConverter
     implements JsonConverter<Interaction, Map<String, dynamic>> {
